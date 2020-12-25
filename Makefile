@@ -3,7 +3,7 @@ TARGET = simple-program
 all: ${TARGET}
 
 ${TARGET}: main.c
-	clang main.c -o ${TARGET}
+	clang ${CFLAGS} ${LDFLAGS} -DUNIX -o ${TARGET} main.c
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin

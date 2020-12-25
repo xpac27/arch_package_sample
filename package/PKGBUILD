@@ -1,0 +1,28 @@
+# Maintainer: Vincent Cogne <banananana@protonmail.com>
+pkgname=arch_package_sample
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A simple arch package created for learning purpose"
+arch=(x86_64 i686 arm armv6h armv7h aarch64)
+url="https://github.com/xpac27/arch_package_sample"
+license=('GPL')
+groups=()
+depends=("glibc")
+makedepends=("git" "make" "clang")
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
+md5sums=('bb8a1f97e3ed58891f0ca1a81c342d3d')
+
+build() {
+	cd "$pkgname-$pkgver"
+	make
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" PREFIX="usr" install
+}
